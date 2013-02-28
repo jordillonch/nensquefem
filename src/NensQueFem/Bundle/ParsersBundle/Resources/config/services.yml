@@ -1,0 +1,36 @@
+services:
+    # Parsers
+    guia_bcn.parser:
+      class: NensQueFem\Bundle\CoreBundle\Extractor\Parsers\GuiaBcn
+      public: false
+    diba.parser:
+      class: NensQueFem\Bundle\CoreBundle\Extractor\Parsers\Diba
+      public: false
+
+    # Spiders
+    guia_bcn.spider:
+      class: NensQueFem\Bundle\CoreBundle\Extractor\Spiders\GuiaBcn
+      public: false
+    diba.spider:
+      class: NensQueFem\Bundle\CoreBundle\Extractor\Spiders\Diba
+      public: false
+
+    # Storage
+    nensquefem_core.storage:
+      class: NensQueFem\Bundle\CoreBundle\Extractor\Storage\MySQL
+      public: false
+
+    # Sources
+    nensquefem_core.source.guia_bcn:
+      class: JordiLlonch\Bundle\WebScrapperBundle\Extractor\Source
+      arguments: [@guia_bcn.parser, @guia_bcn.spider, @nensquefem_core.storage]
+      public: false
+      tags:
+        -  { name: jordi_llonch.webscrapper.source }
+    nensquefem_core.source.diba:
+      class: JordiLlonch\Bundle\WebScrapperBundle\Extractor\Source
+      arguments: [@diba.parser, @diba.spider, @nensquefem_core.storage]
+      public: false
+      tags:
+        -  { name: jordi_llonch.webscrapper.source }
+

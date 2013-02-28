@@ -1,0 +1,4 @@
+services:
+    # Extractor service
+    jordi_llonch.webscrapper.extractor:
+        class: JordiLlonch\Bundle\WebScrapperBundle\Extractor\Engine

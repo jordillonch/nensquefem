@@ -1,0 +1,7 @@
+NQFFrontBundle_portada:
+    pattern:  /
+    defaults: { _controller: NensQueFemFrontBundle:Default:portada }
+
+NQFFrontBundle_portada_buscador:
+    pattern:  /search/{filter}
+    defaults: { _controller: NensQueFemFrontBundle:Default:portada }

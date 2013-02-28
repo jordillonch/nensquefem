@@ -1,0 +1,137 @@
+{% extends '::frontal.html.twig' %}
+
+
+{% block article %}
+
+<div class="container">
+
+    <div class="logo-header">
+        <h1>Nens Que Fem</h1>
+        <p>Cercar d'activitats per a nens.</p>
+   </div>
+
+    <div class="show-div">
+        <form action="{{ path('NQFFrontBundle_search') }}" method="post" {{ form_enctype(form_search) }}>
+            {{ form_errors(form_search) }}
+
+            <div class="row">
+                <div class="span3">
+                    {{ form_row(form_search.category) }}
+                </div>
+                <div class="span3">
+                    {{ form_row(form_search.city) }}
+                </div>
+                <div class="span3">
+                    {{ form_label(form_search.date_from) }}
+                    {{ form_errors(form_search.date_from) }}
+                    {{ form_widget(form_search.date_from, { 'attr': {'class': 'datepicker'} }) }}
+
+                    {{ form_label(form_search.date_up) }}
+                    {{ form_errors(form_search.date_up) }}
+                    {{ form_widget(form_search.date_up, { 'attr': {'class': 'datepicker'} }) }}
+                </div>
+
+                <div class="span3">
+                    {{ form_row(form_search.years) }}
+                </div>
+
+            </div>
+
+            <div class="row">
+               <div class="span3 offset9">
+                   <button type="submit" class="btn btn-large btn-primary">Search</button>
+                </div>
+            </div>
+
+
+
+
+        </form>
+    </div>
+
+
+    <hr>
+
+
+    <div class="row">
+        <div class="span3">
+            <h4>Totals:</h4>
+
+            {% for key, total_arr in search_result_arr.total_arr %}
+                <h5><i class="icon-chevron-right"></i> {{key}}:</h5>
+                <ul class="nav nav-list">
+                    {% for total in total_arr %}
+                    <li>
+                        <a href="#"><i class="i"></i> {{ total }} ({{ random(10) }})</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            {% endfor %}
+
+
+        </div>
+
+        <div class="span9">
+            <h5>Results:</h5>
+
+            <ul class="unstyled">
+                {% for result in search_result_arr.result_arr %}
+                    <li>
+                        <div>
+                            <h6><a href="#">{{ result.title }}</a></h6>
+                            <p>{{ result.description }}</p>
+
+                            <ul class="breadcrumb">
+                                <li>{{ result.category_arr | join(', ') }} <span class="divider">/</span></li>
+                                <li>{{ result.city_arr | join(', ') }} <span class="divider">/</span></li>
+                                <li>{{ result.years_arr | join(', ') }} <span class="divider">/</span></li>
+                                <li>{{ result.date_arr | join(', ') }}</li>
+                            </ul>
+                        </div>
+                        <hr>
+
+                    </li>
+                {% else %}
+                    No .....
+                {% endfor %}
+            </ul>
+
+
+            <div class="pagination pagination-centered">
+                <ul>
+                    <li class="disabled"><a href="#">Prev</a></li>
+                    <li class="active"><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#">Next</a></li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+
+    <footer>
+        <p>&copy; Company 2012</p>
+    </footer>
+
+</div> <!-- /container -->
+
+
+<script type="text/javascript">
+    var startDate = new Date();
+
+    $(document).ready(function() {
+        $('.datepicker').datepicker({
+                        'format': 'dd-mm-yy',
+                        'weekStart': 1
+
+        });
+    });
+</script>
+
+{% endblock %}
