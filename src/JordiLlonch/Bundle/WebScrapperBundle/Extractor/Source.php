@@ -37,7 +37,8 @@ class Source
 
     public function run()
     {
-        return $this->spider->run();
+        $rawData =  $this->spider->run();
+        return $this->parser->run($rawData);
     }
 
     public function saveData($id, $name, $data)

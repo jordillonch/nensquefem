@@ -10,8 +10,8 @@ use JordiLlonch\Bundle\WebScrapperBundle\Extractor\Parsers\Base;
 
 class Diba extends Base
 {
-    public function run()
+    public function run(array $rawData)
     {
-
+        return $rawData;
     }
 }

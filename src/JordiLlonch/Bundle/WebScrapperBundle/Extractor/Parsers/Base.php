@@ -8,5 +8,5 @@ namespace JordiLlonch\Bundle\WebScrapperBundle\Extractor\Parsers;
 
 abstract class Base
 {
-    abstract public function run();
+    abstract public function run(array $rawData);
 }

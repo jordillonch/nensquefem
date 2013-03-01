@@ -1,9 +1,9 @@
 <?php
 
-namespace Nensquefem\Bundle\CoreBundle;
+namespace NensQueFem\Bundle\CoreBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-class NensquefemCoreBundle extends Bundle
+class NensQueFemCoreBundle extends Bundle
 {
 }

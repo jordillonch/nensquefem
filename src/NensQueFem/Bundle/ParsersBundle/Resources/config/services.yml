@@ -18,6 +18,7 @@ services:
     # Storage
     nensquefem_core.storage:
       class: NensQueFem\Bundle\ParsersBundle\Extractor\Storage\MySQL
+      arguments: [@doctrine.orm.entity_manager]
       public: false
 
     # Sources

@@ -1,6 +1,6 @@
 <?php
 
-namespace Nensquefem\Bundle\CoreBundle\Tests\Controller;
+namespace NensQueFem\Bundle\CoreBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
