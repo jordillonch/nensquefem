@@ -4,7 +4,7 @@
  * @date 02/09/12 21:44
  */
 
-namespace NensQueFem\Bundle\CoreBundle\Extractor\Spiders;
+namespace NensQueFem\Bundle\ParsersBundle\Extractor\Spiders;
 
 use JordiLlonch\Bundle\WebScrapperBundle\Extractor\Spiders\Web;
 

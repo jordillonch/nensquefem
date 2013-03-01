@@ -1,23 +1,23 @@
 services:
     # Parsers
     guia_bcn.parser:
-      class: NensQueFem\Bundle\CoreBundle\Extractor\Parsers\GuiaBcn
+      class: NensQueFem\Bundle\ParsersBundle\Extractor\Parsers\GuiaBcn
       public: false
     diba.parser:
-      class: NensQueFem\Bundle\CoreBundle\Extractor\Parsers\Diba
+      class: NensQueFem\Bundle\ParsersBundle\Extractor\Parsers\Diba
       public: false
 
     # Spiders
     guia_bcn.spider:
-      class: NensQueFem\Bundle\CoreBundle\Extractor\Spiders\GuiaBcn
+      class: NensQueFem\Bundle\ParsersBundle\Extractor\Spiders\GuiaBcn
       public: false
     diba.spider:
-      class: NensQueFem\Bundle\CoreBundle\Extractor\Spiders\Diba
+      class: NensQueFem\Bundle\ParsersBundle\Extractor\Spiders\Diba
       public: false
 
     # Storage
     nensquefem_core.storage:
-      class: NensQueFem\Bundle\CoreBundle\Extractor\Storage\MySQL
+      class: NensQueFem\Bundle\ParsersBundle\Extractor\Storage\MySQL
       public: false
 
     # Sources

@@ -4,7 +4,7 @@
  * @date 15/02/13 10:40
  */
 
-namespace NensQueFem\Bundle\CoreBundle\Extractor\Storage;
+namespace NensQueFem\Bundle\ParsersBundle\Extractor\Storage;
 
 use JordiLlonch\Bundle\WebScrapperBundle\Extractor\Storage\Base as BaseStorage;
 
