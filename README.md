@@ -15,6 +15,7 @@ My intention is to create a webscrapper to extract child activities in Barcelona
     php composer.phar update
     app/console doctrine:database:create
     app/console doctrine:schema:create
+    app/console doctrine:fixtures:load
 
 
 ## Usage

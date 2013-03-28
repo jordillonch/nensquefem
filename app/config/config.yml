@@ -26,7 +26,7 @@ twig:
 assetic:
     debug:          %kernel.debug%
     use_controller: false
-    bundles:        [ ]
+    bundles:        [ NensQueFemFrontBundle ]
     #java: /usr/bin/java
     filters:
         cssrewrite: ~
@@ -58,16 +58,3 @@ swiftmailer:
     password:  %mailer_password%
     spool:     { type: memory }
 
-#jordi_llonch_events_manager:
-#    sources:
-#        guia_bcn:
-#          spider: NensQueFem\Bundle\CoreBundle\Extractor\Spiders\GuiaBcn
-#          parser: NensQueFem\Bundle\CoreBundle\Extractor\Parsers\GuiaBcn
-#        diba:
-#          spider: NensQueFem\Bundle\CoreBundle\Extractor\Spiders\Diba
-#          parser: NensQueFem\Bundle\CoreBundle\Extractor\Parsers\Diba
-
-services:
-    nqf.search:
-        class: NensQueFem\Bundle\FrontBundle\Lib\NqfSearch
-        arguments: ['NqfSearchMongo']

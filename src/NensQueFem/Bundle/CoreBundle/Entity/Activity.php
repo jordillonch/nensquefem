@@ -91,11 +91,22 @@ class Activity
      */
     private $recommendedAgeTo;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Category", inversedBy="activities")
+     * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
+     */
+    protected $category;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="City", inversedBy="activities")
+     * @ORM\JoinColumn(name="city_id", referencedColumnName="id")
+     */
+    protected $city;
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -111,14 +122,14 @@ class Activity
     public function setExternalId($externalId)
     {
         $this->externalId = $externalId;
-    
+
         return $this;
     }
 
     /**
      * Get externalId
      *
-     * @return string 
+     * @return string
      */
     public function getExternalId()
     {
@@ -134,14 +145,14 @@ class Activity
     public function setTitle($title)
     {
         $this->title = $title;
-    
+
         return $this;
     }
 
     /**
      * Get title
      *
-     * @return string 
+     * @return string
      */
     public function getTitle()
     {
@@ -157,14 +168,14 @@ class Activity
     public function setDescription($description)
     {
         $this->description = $description;
-    
+
         return $this;
     }
 
     /**
      * Get description
      *
-     * @return string 
+     * @return string
      */
     public function getDescription()
     {
@@ -180,14 +191,14 @@ class Activity
     public function setContent($content)
     {
         $this->content = $content;
-    
+
         return $this;
     }
 
     /**
      * Get content
      *
-     * @return string 
+     * @return string
      */
     public function getContent()
     {
@@ -203,14 +214,14 @@ class Activity
     public function setLink($link)
     {
         $this->link = $link;
-    
+
         return $this;
     }
 
     /**
      * Get link
      *
-     * @return string 
+     * @return string
      */
     public function getLink()
     {
@@ -226,14 +237,14 @@ class Activity
     public function setPermalink($permalink)
     {
         $this->permalink = $permalink;
-    
+
         return $this;
     }
 
     /**
      * Get permalink
      *
-     * @return string 
+     * @return string
      */
     public function getPermalink()
     {
@@ -249,14 +260,14 @@ class Activity
     public function setDate($date)
     {
         $this->date = $date;
-    
+
         return $this;
     }
 
     /**
      * Get date
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDate()
     {
@@ -272,14 +283,14 @@ class Activity
     public function setRecommendedAgeFrom($recommendedAgeFrom)
     {
         $this->recommendedAgeFrom = $recommendedAgeFrom;
-    
+
         return $this;
     }
 
     /**
      * Get recommendedAgeFrom
      *
-     * @return integer 
+     * @return integer
      */
     public function getRecommendedAgeFrom()
     {
@@ -295,14 +306,14 @@ class Activity
     public function setRecommendedAgeTo($recommendedAgeTo)
     {
         $this->recommendedAgeTo = $recommendedAgeTo;
-    
+
         return $this;
     }
 
     /**
      * Get recommendedAgeTo
      *
-     * @return integer 
+     * @return integer
      */
     public function getRecommendedAgeTo()
     {
@@ -326,4 +337,50 @@ class Activity
         return $this->sourceId;
     }
 
+
+    /**
+     * Set category
+     *
+     * @param \NensQueFem\Bundle\CoreBundle\Entity\Category $category
+     * @return Activity
+     */
+    public function setCategory(\NensQueFem\Bundle\CoreBundle\Entity\Category $category = null)
+    {
+        $this->category = $category;
+    
+        return $this;
+    }
+
+    /**
+     * Get category
+     *
+     * @return \NensQueFem\Bundle\CoreBundle\Entity\Category 
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
+
+    /**
+     * Set city
+     *
+     * @param \NensQueFem\Bundle\CoreBundle\Entity\City $city
+     * @return Activity
+     */
+    public function setCity(\NensQueFem\Bundle\CoreBundle\Entity\City $city = null)
+    {
+        $this->city = $city;
+    
+        return $this;
+    }
+
+    /**
+     * Get city
+     *
+     * @return \NensQueFem\Bundle\CoreBundle\Entity\City 
+     */
+    public function getCity()
+    {
+        return $this->city;
+    }
 }

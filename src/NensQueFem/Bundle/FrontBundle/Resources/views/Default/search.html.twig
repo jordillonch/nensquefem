@@ -1,17 +1,17 @@
-{% extends '::frontal.html.twig' %}
+{% extends "NensQueFemFrontBundle:Layout:frontal.html.twig" %}
 
 
-{% block article %}
+{% block content %}
 
 <div class="container">
 
     <div class="logo-header">
-        <h1>Nens Que Fem</h1>
-        <p>Cercar d'activitats per a nens.</p>
+        <h1>Nens Què Fem?</h1>
+        <p>Cerca d'activitats per a nens</p>
    </div>
 
     <div class="show-div">
-        <form action="{{ path('NQFFrontBundle_search') }}" method="post" {{ form_enctype(form_search) }}>
+        <form action="{{ path('search') }}" method="get" {{ form_enctype(form_search) }}>
             {{ form_errors(form_search) }}
 
             <div class="row">
@@ -26,15 +26,16 @@
                     {{ form_errors(form_search.date_from) }}
                     {{ form_widget(form_search.date_from, { 'attr': {'class': 'datepicker'} }) }}
 
-                    {{ form_label(form_search.date_up) }}
-                    {{ form_errors(form_search.date_up) }}
-                    {{ form_widget(form_search.date_up, { 'attr': {'class': 'datepicker'} }) }}
+                    {{ form_label(form_search.date_to) }}
+                    {{ form_errors(form_search.date_to) }}
+                    {{ form_widget(form_search.date_to, { 'attr': {'class': 'datepicker'} }) }}
                 </div>
 
                 <div class="span3">
                     {{ form_row(form_search.years) }}
                 </div>
 
+                {{ form_rest(form_search) }}
             </div>
 
             <div class="row">
@@ -57,16 +58,16 @@
         <div class="span3">
             <h4>Totals:</h4>
 
-            {% for key, total_arr in search_result_arr.total_arr %}
-                <h5><i class="icon-chevron-right"></i> {{key}}:</h5>
-                <ul class="nav nav-list">
-                    {% for total in total_arr %}
-                    <li>
-                        <a href="#"><i class="i"></i> {{ total }} ({{ random(10) }})</a>
-                    </li>
-                    {% endfor %}
-                </ul>
-            {% endfor %}
+            {#{% for key, total in search_result.total %}#}
+                {#<h5><i class="icon-chevron-right"></i> {{key}}:</h5>#}
+                {#<ul class="nav nav-list">#}
+                    {#{% for total in total %}#}
+                    {#<li>#}
+                        {#<a href="#"><i class="i"></i> {{ total }} ({{ random(10) }})</a>#}
+                    {#</li>#}
+                    {#{% endfor %}#}
+                {#</ul>#}
+            {#{% endfor %}#}
 
 
         </div>
@@ -75,48 +76,36 @@
             <h5>Results:</h5>
 
             <ul class="unstyled">
-                {% for result in search_result_arr.result_arr %}
+                {% for result in pager.currentPageResults %}
                     <li>
                         <div>
                             <h6><a href="#">{{ result.title }}</a></h6>
                             <p>{{ result.description }}</p>
 
                             <ul class="breadcrumb">
-                                <li>{{ result.category_arr | join(', ') }} <span class="divider">/</span></li>
-                                <li>{{ result.city_arr | join(', ') }} <span class="divider">/</span></li>
-                                <li>{{ result.years_arr | join(', ') }} <span class="divider">/</span></li>
-                                <li>{{ result.date_arr | join(', ') }}</li>
+                                <li>{{ result.category.name }} <span class="divider">/</span></li>
+                                <li>{{ result.city.name }} <span class="divider">/</span></li>
                             </ul>
                         </div>
                         <hr>
 
                     </li>
                 {% else %}
-                    No .....
+                    No s'ha trobat cap resultat.
                 {% endfor %}
             </ul>
-
-
-            <div class="pagination pagination-centered">
-                <ul>
-                    <li class="disabled"><a href="#">Prev</a></li>
-                    <li class="active"><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">Next</a></li>
-                </ul>
-            </div>
 
         </div>
     </div>
 
-
+    <div class="pagination-centered">
+        {{ pagerHtml|raw }}
+    </div>
 
 
 
     <footer>
-        <p>&copy; Company 2012</p>
+        <p>&copy; Jordi Llonch 2013</p>
     </footer>
 
 </div> <!-- /container -->

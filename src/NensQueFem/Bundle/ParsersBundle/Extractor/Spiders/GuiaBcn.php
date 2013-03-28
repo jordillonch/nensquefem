@@ -16,7 +16,19 @@ class GuiaBcn extends Rss
         $this->feed->init();
         $data = $this->feed->get_items();
 
-        return $data;
+        $result = array();
+        foreach ($data as $k => $item) {
+            // get content from url
+            $link = htmlspecialchars_decode($item->get_link());
+            $link_web_content = file_get_contents($link);
+
+            $r = array();
+            $r['feed_data'] = $item;
+            $r['link_web_content'] = $link_web_content;
+            $result[] = $r;
+        }
+
+        return $result;
     }
 
     public function getId()

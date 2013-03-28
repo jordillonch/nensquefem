@@ -5,30 +5,65 @@ namespace NensQueFem\Bundle\FrontBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-
-use NensQueFem\Bundle\FrontBundle\Form\SearchActivitatType;
+use Pagerfanta\View\TwitterBootstrapView;
+use NensQueFem\Bundle\FrontBundle\Form\SearchActivityType;
 
 class DefaultController extends Controller
 {
-
-    /**
-     * @Route("/home", defaults={"url_search" = 1}, name="NQFFrontBundle_home")
-     * @Route("/search", defaults={"url_search" = 1}, name="NQFFrontBundle_search")
-     * @Route("/search/{url_search}", name="NQFFrontBundle_search_param")
-     * @return \Symfony\Component\HttpFoundation\Response
-     */
-    public function searchAction($url_search)
+    public function indexAction()
     {
-        $peticion = $this->getRequest();
+        return $this->searchAction();
+    }
 
+    public function searchAction()
+    {
         $search_arr = array();
-        $form_search   = $this->createForm(new SearchActivitatType(), $search_arr);
+        $form_search = $this->createForm(new SearchActivityType(), $search_arr);
 
-        $search_result_arr    = $this->get('nqf.search')->getResult($search_arr);
+        $pager = array();
+        $pager['currentPageResults'] = array();
+        $pagerHtml = '';
 
-        return $this->render('NensQueFemFrontBundle:Default:home.html.twig', array(
-            'search_result_arr'    => $search_result_arr,
+        // if there are filters
+        if($this->getRequest()->get($form_search->getName(), false)) {
+            $form_search->bind($this->getRequest());
+            if($form_search->isValid()) {
+                $pager = $this->get('nensquefem.search')->getResultPager($form_search->getData(), $this->getRequest()->get('page', 1));
+
+                // Paginator - route generator
+                $me = $this;
+                $params = $this->getRequest()->query->all();
+                unset($params['page']);
+                $routeGenerator = function($page) use ($me, $params)
+                {
+                    return $me->generateUrl('search', array_merge(array('page' => $page), $params));
+                };
+
+                // Paginator - view
+                $view = new TwitterBootstrapView();
+                $pagerHtml = $view->render($pager, $routeGenerator, array(
+                    'proximity' => 3,
+                    'prev_message' => 'Anterior',
+                    'next_message' => 'Següent',
+                ));
+            }
+        }
+
+        return $this->render('NensQueFemFrontBundle:Default:search.html.twig', array(
+            'pager'    => $pager,
+            'pagerHtml'    => $pagerHtml,
             'form_search'   => $form_search->createView()
         ));
     }
+
+    public function quiSomAction()
+    {
+        return $this->render('NensQueFemFrontBundle:Default:quiSom.html.twig', array());
+    }
+
+    public function contacteAction()
+    {
+        return $this->render('NensQueFemFrontBundle:Default:contacte.html.twig', array());
+    }
+
 }

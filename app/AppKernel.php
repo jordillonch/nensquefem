@@ -19,16 +19,19 @@ class AppKernel extends Kernel
             new JMS\AopBundle\JMSAopBundle(),
             new JMS\DiExtraBundle\JMSDiExtraBundle($this),
             new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
+            new RaulFraile\Bundle\LadybugBundle\RaulFraileLadybugBundle(),
+            new WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle(),
+            new JordiLlonch\Bundle\WebScrapperBundle\JordiLlonchWebScrapperBundle(),
             new NensQueFem\Bundle\FrontBundle\NensQueFemFrontBundle(),
             new NensQueFem\Bundle\ParsersBundle\NensQueFemParsersBundle(),
-            new JordiLlonch\Bundle\WebScrapperBundle\JordiLlonchWebScrapperBundle(),
-            new Nensquefem\Bundle\CoreBundle\NensquefemCoreBundle(),
+            new NensQueFem\Bundle\CoreBundle\NensQueFemCoreBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
             $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
             $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();
             $bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle();
+            $bundles[] = new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle();
         }
 
         return $bundles;

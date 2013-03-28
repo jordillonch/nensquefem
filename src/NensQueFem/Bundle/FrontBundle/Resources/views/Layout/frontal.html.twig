@@ -37,17 +37,17 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </a>
-            <a class="brand" href="#">NensQueFem</a>
+            <a class="brand" href="#">NensQueFem.cat</a>
             <div class="nav-collapse collapse">
                 <ul class="nav">
                     <li class="active">
-                        <a href="">Buscador</a>
+                        <a href="{{  path('main') }}">Buscador</a>
                     </li>
                     <li class="">
-                        <a href="">Qui som</a>
+                        <a href="{{ path('who_we_are') }}">Qui som</a>
                     </li>
                     <li class="">
-                        <a href="">Contacte</a>
+                        <a href="{{ path('contact') }}">Contacte</a>
                     </li>
                 </ul>
             </div><!--/.nav-collapse -->
@@ -55,13 +55,11 @@
     </div>
 </div>
 
-{% if app.session.hasFlash('info') %}
-    <p class="info">{{ app.session.getFlash('info') }}</p>
+{% if app.session.flashbag.has('info') %}
+    <p class="info">{{ app.session.flashbag.get('info') }}</p>
 {% endif %}
 
 
-<article>
-    {% block article %}{% endblock %}
-</article>
+{% block content %}{% endblock %}
 
 {% endblock %}

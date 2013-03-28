@@ -3,6 +3,8 @@ services:
     guia_bcn.parser:
       class: NensQueFem\Bundle\ParsersBundle\Extractor\Parsers\GuiaBcn
       public: false
+      calls:
+        - [setEntityManager, [@doctrine.orm.entity_manager]]
     diba.parser:
       class: NensQueFem\Bundle\ParsersBundle\Extractor\Parsers\Diba
       public: false
@@ -16,21 +18,21 @@ services:
       public: false
 
     # Storage
-    nensquefem_core.storage:
+    nensquefem.storage:
       class: NensQueFem\Bundle\ParsersBundle\Extractor\Storage\MySQL
       arguments: [@doctrine.orm.entity_manager]
       public: false
 
     # Sources
-    nensquefem_core.source.guia_bcn:
+    nensquefem.source.guia_bcn:
       class: JordiLlonch\Bundle\WebScrapperBundle\Extractor\Source
-      arguments: [@guia_bcn.parser, @guia_bcn.spider, @nensquefem_core.storage]
+      arguments: [@guia_bcn.parser, @guia_bcn.spider, @nensquefem.storage]
       public: false
       tags:
         -  { name: jordi_llonch.webscrapper.source }
-    nensquefem_core.source.diba:
+    nensquefem.source.diba:
       class: JordiLlonch\Bundle\WebScrapperBundle\Extractor\Source
-      arguments: [@diba.parser, @diba.spider, @nensquefem_core.storage]
+      arguments: [@diba.parser, @diba.spider, @nensquefem.storage]
       public: false
       tags:
         -  { name: jordi_llonch.webscrapper.source }

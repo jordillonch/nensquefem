@@ -20,6 +20,8 @@ class MySQL extends BaseStorage
 
             // save/update data
             $activity->setSourceId($id);
+            $activity->setCity($item['city']);
+            $activity->setCategory($item['category']);
             $activity->setExternalId($item['external_id']);
             $activity->setTitle($item['title']);
             $activity->setDescription($item['description']);

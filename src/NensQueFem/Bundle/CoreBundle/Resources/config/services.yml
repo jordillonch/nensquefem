@@ -1,0 +1,4 @@
+services:
+  nensquefem.search:
+      class: NensQueFem\Bundle\CoreBundle\Services\Search
+      arguments: [@doctrine.orm.entity_manager]

@@ -1,7 +1,16 @@
-NQFFrontBundle_portada:
+main:
     pattern:  /
-    defaults: { _controller: NensQueFemFrontBundle:Default:portada }
+    defaults: { _controller: NensQueFemFrontBundle:Default:index }
 
-NQFFrontBundle_portada_buscador:
-    pattern:  /search/{filter}
-    defaults: { _controller: NensQueFemFrontBundle:Default:portada }
+search:
+    pattern:  /search
+    defaults: { _controller: NensQueFemFrontBundle:Default:search }
+    methods:  [GET]
+
+who_we_are:
+    pattern:  /qui_som
+    defaults: { _controller: NensQueFemFrontBundle:Default:quiSom }
+
+contact:
+    pattern:  /contacte
+    defaults: { _controller: NensQueFemFrontBundle:Default:contacte }

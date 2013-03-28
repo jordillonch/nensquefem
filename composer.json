@@ -1,6 +1,12 @@
 {
     "name": "symfony/framework-standard-edition",
     "description": "The \"Symfony Standard Edition\" distribution",
+    "authors": [
+        {
+            "name": "Jordi Llonch",
+            "email": "llonch.jordi@gmail.com"
+        }
+    ],
     "autoload": {
         "psr-0": { "": "src/" }
     },
@@ -18,7 +24,11 @@
         "sensio/generator-bundle": "2.2.*",
         "jms/security-extra-bundle": "1.4.*",
         "jms/di-extra-bundle": "1.3.*",
-        "simplepie/simplepie": "dev-master"
+        "simplepie/simplepie": "dev-master",
+        "raulfraile/ladybug-bundle": "dev-master",
+        "doctrine/doctrine-fixtures-bundle": "dev-master",
+        "pagerfanta/pagerfanta": "dev-master",
+        "white-october/pagerfanta-bundle": "dev-symfony2.0"
     },
     "scripts": {
         "post-install-cmd": [
